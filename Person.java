@@ -1,4 +1,4 @@
-public class Person
+public class Person implements Comparable
 {
 	/***** TODO: (Part 2) create helper inner class for Identity*****/
 
@@ -81,5 +81,15 @@ public class Person
 	}
 
 	// INTERFACE METHODS
-	/***** TODO: (Part 1) override compareTo method to implement Comparable interface*****/
+	@Override
+	public int compareTo(Object o) {
+		if (o == null) {
+			throw new IllegalArgumentException("Null data given to compareTo");
+		} else if (o.getClass() != this.getClass()) {
+			throw new ClassCastException(" Non-Person data given to compareTO");
+		}
+
+		Person otherPerson = (Person) o;
+		return this.privilege - otherPerson.getPrivilege();
+	}
 }

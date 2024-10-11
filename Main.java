@@ -27,7 +27,9 @@ public class Main
 		MIN = Person.DEFAULT_PRIVILEGE - TOTAL_PTS_POSSIBLE,
 		LEFT_WIDTH = Math.abs(MIN)/PTS_PER_ANSWER,
 		RIGHT_WIDTH = MAX/PTS_PER_ANSWER,
-		NAME_WIDTH = 20;
+			NAME_WIDTH = 20;
+
+	public static final String PRIVILEGE_THAN = " privilege than ";
 
 	private static Scanner keyboard = new Scanner(System.in);
 
@@ -73,7 +75,15 @@ public class Main
 					System.out.println(self);
 					break;
 				case 3:
-					/***** TODO: (Part 1) implement a comparison case using the comparable method on the Person class to compare self to p1-p4*****/
+					for (int i = 0; i < people.length - 1; i++) {
+						if (self.compareTo(people[i]) < 0) {
+							System.out.println("Less" + PRIVILEGE_THAN + people[i].getName());
+						} else if (self.compareTo(people[i]) > 0) {
+							System.out.println("More" + PRIVILEGE_THAN + people[i].getName());
+						} else {
+							System.out.println("Equal privilege to " + people[1].getName());
+						}
+					}
 					
 					System.out.println("\nReturning to main menu.\n");
 					break;
