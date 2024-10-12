@@ -36,10 +36,10 @@ public class Main
 	public static void main(String[] args)
 	{
 		// DECLARATION + INITIALIZATION
-		Person p1 = new Person("Amira", "I am a Syrian refugee.", 40);
-		Person p2 = new Person("D'Andra", "I am an African-American trans woman.", -20);
-		Person p3 = new Person("Jennifer", "I am a New Yorker", 140);
-		Person p4 = new Person("Pete", "I am a guy from Pennsylvania", 200);
+		Person p1 = new Person("Amira", "She/Her/Hers", "I am a Syrian refugee.", 40);
+		Person p2 = new Person("D'Andra", "She/Her/Hers", "I am an African-American trans woman.", -20);
+		Person p3 = new Person("Jennifer", "They/Them/Theirs", "I am a New Yorker", 140);
+		Person p4 = new Person("Pete", "He/Him/His", "I am a guy from Pennsylvania", 200);
 		Person self = new Person();
 		Person[] people = {p1, p2, p3, p4, self};
 		boolean done = false;
