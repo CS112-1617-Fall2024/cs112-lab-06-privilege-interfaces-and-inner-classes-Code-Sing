@@ -30,6 +30,9 @@ public class Main
 			NAME_WIDTH = 20;
 
 	public static final String PRIVILEGE_THAN = " privilege than ";
+	public static final String FULL_BLOCK = "\u001B[1m███ \u001B[0m";
+	public static final String UPPER_HALF_BLOCK = "▀▀▀ ";
+	public static final String LOWER_HALF_BLOCK = "▄▄▄ ";
 
 	private static Scanner keyboard = new Scanner(System.in);
 
@@ -132,21 +135,19 @@ public class Main
 	public static int doPrivilegeQuestionnaire() {
 		boolean isValid;
 		int choice, privilegeEstimate = Person.DEFAULT_PRIVILEGE;
-	
+
 		System.out.println("Please indicate whether the following statements are true or false.\n"
 				+ "Input 1 or 2 accordingly.");
-		
-		for(int i = 0; i < STATEMENTS.length; i++) 
-		{
+
+		for (int i = 0; i < STATEMENTS.length; i++) {
 			isValid = false;
-			do{
+			do {
 				System.out.println(STATEMENTS[i]);
 				System.out.print("1. True. \n2. False.\nEnter the appropriate answer: ");
 				choice = keyboard.nextInt();
 				System.out.println();
 
-				switch (choice)
-				{
+				switch (choice) {
 					case 1:
 						privilegeEstimate += 10;
 						isValid = true;
@@ -157,11 +158,59 @@ public class Main
 						break;
 					default:
 						System.out.println("Invalid choice, please make sure to enter 1 or 2.");
-						break;			
+						break;
 				}
-			}while(!isValid);
+			} while (!isValid);
 		}
-		
+
 		return privilegeEstimate;
+	}
+
+	public static String barChart(int[] privilege, char[] nameFirstLetter) {
+		String blockLine = "";
+		String spacer = "";
+		String chart = "\n";
+		int linesOverZero = 7;
+		for (int line = 0; line < 1; line++) {
+			for (int j = 0; j < linesOverZero; j++) {
+				for (int i = 0; i < privilege.length; i++) {
+					int addBlock = privilege[i] / 40;
+					int addBlockPredictor = addBlock + 1;
+					int addHalf = privilege[i] % 40;
+					if (addBlockPredictor >= linesOverZero - j && addBlock < linesOverZero - j && addHalf > 0) {
+						blockLine += LOWER_HALF_BLOCK;
+					} else if (addBlock >= linesOverZero - j && addBlock > 0) {
+						blockLine += FULL_BLOCK;
+					} else {
+						blockLine += "    ";
+					}
+					}
+				chart += blockLine + "\n";
+				blockLine = "";
+			}
+
+			for (int spacerIndex = 0; spacerIndex < nameFirstLetter.length; spacerIndex++) {
+				spacer += "(" + nameFirstLetter[spacerIndex] + ")-";
+			}
+			chart += spacer + " <0 Privilege>" + "\n";
+
+			for (int j = 0; j <= 1; j++) {
+				for (int i = 0; i < privilege.length; i++) {
+					int addBlock = privilege[i] / 40;
+					int addBlockPredictor = addBlock - 1;
+					int addHalf = privilege[i] % 40;
+					if (addBlockPredictor <= -1 + -j && addBlock > -1 + -j && addHalf < 0) {
+						blockLine += UPPER_HALF_BLOCK;
+					} else if (addBlock <= -1 + -j && addBlock < 0) {
+						blockLine += FULL_BLOCK;
+					} else {
+						blockLine += "    ";
+					}
+				}
+				chart += blockLine + "\n";
+				blockLine = "";
+			}
+		}
+		return chart;
 	}
 }
