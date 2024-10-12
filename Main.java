@@ -38,7 +38,7 @@ public class Main
 		// DECLARATION + INITIALIZATION
 		Person p1 = new Person("Amira", "She/Her/Hers", "I am a Syrian refugee.", 40);
 		Person p2 = new Person("D'Andra", "She/Her/Hers", "I am an African-American trans woman.", -20);
-		Person p3 = new Person("Jennifer", "They/Them/Theirs", "I am a New Yorker", 140);
+		Person p3 = new Person("Jennifer", "They/Them/Their(s)", "I am a New Yorker", 140);
 		Person p4 = new Person("Pete", "He/Him/His", "I am a guy from Pennsylvania", 200);
 		Person self = new Person();
 		Person[] people = {p1, p2, p3, p4, self};
@@ -99,25 +99,34 @@ public class Main
 			}
 		}while(!done);
 
-		System.out.println("Thank you for exploring your privilege, it can be uncomfortable but it's a crucial step" +
+		System.out.println("Thank you for exploring your privilege, it can be uncomfortable but it's a crucial step " +
 			"in our own growth and self-reflection. We appreciate you taking that journey with us! :D");
 	}
 
-	/***** TODO: (Part 2) upgrade method to ask user for pronouns and background info *****/
+
 	public static void fillInfo(Person person){
 		//sets default privilege prior to questionnaire to 100
-		String name, story;
+		String name, pronouns, background;
 		
 		System.out.println("What is your name? ");
 		name = keyboard.nextLine();
-		System.out.println("\nHello " + name + ", write a small self-identifying statement about yourself "
+		System.out.println("\nHello " + name + "!"
+				+ "\nHere is a list of common examples of preferred pronouns:"
+				+ "\nGender Neutral/Nonbinary: they/them/thier(s) or ze/hir/hirs"
+				+ "\n Feminie: she/her/hers"
+				+ "\n Masculine: he/him/hers"
+				+ "What are your prefered pronouns?");
+		pronouns = keyboard.nextLine();
+		System.out.println(
+				"Now please write a small self-identifying statement about yourself "
 				+ "and your background and identity, this can be anything you like!\n"
 				+ "For example: I'm a [nationality / place of origin / ethnicity / sexuality / gender expression / etc.]...");
 		System.out.println("Tell us about yourself: ");
-		story = keyboard.nextLine();
+		background = keyboard.nextLine();
 		
 		person.setName(name);
-		person.setStory(story);
+		person.setPronouns(pronouns);
+		person.setBackground(background);
 	}
 
 	public static int doPrivilegeQuestionnaire() {
